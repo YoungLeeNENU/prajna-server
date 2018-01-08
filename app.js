@@ -99,7 +99,7 @@ if (false) {
 }
 router.get('/', (ctx, next) => __awaiter(this, void 0, void 0, function* () {
     const BODY_HTML = [
-        `prajna`,
+        `prajna-server`,
     ].join('');
     ctx.body = BODY_HTML;
 }));
