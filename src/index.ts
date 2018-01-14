@@ -3,6 +3,8 @@ import * as koaBody from 'koa-bodyparser';
 import * as cors from 'kcors';
 import * as Router from 'koa-router';
 
+import behaviorRouter from './behavior/behavior';
+
 require('http').globalAgent.maxSockets = Infinity;
 require('https').globalAgent.maxSockets = Infinity;
 
@@ -23,6 +25,8 @@ router.get('/', async (ctx: Router.IRouterContext, next: () => Promise<Koa.Middl
 
     ctx.body = BODY_HTML;
 });
+
+router.use('/behavior', koaBody(), behaviorRouter());
 
 try {
     app.use(cors());

@@ -24,7 +24,7 @@
     "elasticsearch": "^14.0.0",
     "emailjs": "^1.0.12",
     "figlet": "^1.2.0",
-    "kafka-node": "^2.3.0",
+    "kafka-node": "^2.3.1",
     "kcors": "^2.2.1",
     "koa": "2.3.0",
     "koa-bodyparser": "3.2.0",
