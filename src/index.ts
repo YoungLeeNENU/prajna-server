@@ -26,7 +26,7 @@ router.get('/', async (ctx: Router.IRouterContext, next: () => Promise<Koa.Middl
     ctx.body = BODY_HTML;
 });
 
-router.use('/behavior', koaBody(), behaviorRouter());
+router.use('/store', koaBody(), behaviorRouter());
 
 try {
     app.use(cors());

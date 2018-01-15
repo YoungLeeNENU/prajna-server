@@ -90,6 +90,37 @@ export default function () {
             }];
             let prajnaProducer = new PrajnaProducer();
             let res = await prajnaProducer.elasticsearchBulk(mockData);
+            if (res && !res.errors) {
+                responseJSON.code = RESPONSE_MSG_CODE.SUCCESS;
+                responseJSON.message = RESPONSE_MSG_DETAIL.SUCCESS;
+            }
+            responseJSON.result = res;
+            ctx.body = responseJSON;
+        } catch (error) {
+            console.log(error);
+            responseJSON = Object.assign(responseJSON, {
+                message: error,
+            });
+            ctx.body = responseJSON;
+        }
+
+        await next();
+    });
+
+    router.post('/es', async (ctx: Router.IRouterContext, next: () => Promise<Koa.Middleware>) => {
+        let responseJSON: Response = {
+            code: RESPONSE_MSG_CODE.FAIL,
+            message: RESPONSE_MSG_DETAIL.FAIL_PRAJNA
+        };
+        try {
+            const clientData = ctx.request.body;
+            let prajnaProducer = new PrajnaProducer();
+            let res = await prajnaProducer.elasticsearchBulk(clientData);
+            if (res && !res.errors) {
+                responseJSON.code = RESPONSE_MSG_CODE.SUCCESS;
+                responseJSON.message = RESPONSE_MSG_DETAIL.SUCCESS;
+            }
+            responseJSON.result = res;
             ctx.body = responseJSON;
         } catch (error) {
             console.log(error);
