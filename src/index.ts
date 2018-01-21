@@ -27,6 +27,27 @@ router.get('/', async (ctx: Router.IRouterContext, next: () => Promise<Koa.Middl
 });
 
 router.use('/store', koaBody(), behaviorRouter());
+router.get('/ping', async (ctx: Router.IRouterContext, next: () => Promise<Koa.Middleware>) => {
+    const BODY_HTML: string = [
+        `<!DOCTYPE html>`,
+        `<html>`,
+        `<head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">`,
+        `<title>Prajna Ping Test</title></head>`,
+        `<body style="margin:0; padding: 0; zoom: 1">`,
+        `<div style="text-align: center; margin-top: 42px;">`,
+        `<div style="text-align: center; margin-top: 24px;">`,
+        `<h1 style="font-weight: 200;">ping</h1>`,
+        `<div style="margin-top: 66px">`,
+        `</div>`,
+        `</div>`,
+        `</body>`,
+        `</html>`
+    ].join('');
+
+    ctx.body = BODY_HTML;
+
+    await next();
+});
 
 try {
     app.use(cors());
