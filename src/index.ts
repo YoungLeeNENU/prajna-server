@@ -41,8 +41,11 @@ try {
     app.use(router.routes());
     app.use(router.allowedMethods());
 
+    console.log(`prajna server is running on ${port}`);
     app.listen(port);
 } catch (error) {
     // TODO: 
     console.error(error);
 }
+
+
