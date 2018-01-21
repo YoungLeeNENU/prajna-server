@@ -115,7 +115,7 @@ export default function () {
         try {
             const clientData = ctx.request.body;
             let prajnaProducer = new PrajnaProducer();
-            let res = await prajnaProducer.elasticsearchBulk(clientData);
+            let res = await prajnaProducer.elasticsearchBulk(JSON.parse(clientData.data));
             if (res && !res.errors) {
                 responseJSON.code = RESPONSE_MSG_CODE.SUCCESS;
                 responseJSON.message = RESPONSE_MSG_DETAIL.SUCCESS;
@@ -123,7 +123,6 @@ export default function () {
             responseJSON.result = res;
             ctx.body = responseJSON;
         } catch (error) {
-            console.log(error);
             responseJSON = Object.assign(responseJSON, {
                 message: error,
             });
